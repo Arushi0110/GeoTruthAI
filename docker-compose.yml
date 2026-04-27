@@ -1,0 +1,46 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: geotruthai-mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongodb_data:/data/db
+
+  server:
+    build: ./server
+    container_name: geotruthai-server
+    restart: always
+    ports:
+      - 5001:5000
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+      - ai-service
+
+  ai-service:
+    build: ./ai-service
+    container_name: geotruthai-ai
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./ai-service:/app
+
+  client:
+    build:
+      context: ./client
+    container_name: geotruthai-client
+    ports:
+      - 3000:80
+    depends_on:
+      - server
+
+volumes:
+  mongodb_data:
+

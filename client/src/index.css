@@ -1,0 +1,268 @@
+/* GeoTruthAI - Perfect Form CSS + All Features */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* BLUE BOLD HEADINGS */
+h1, h2, h3, h4, h5, h6 {
+  color: #2563eb !important;
+  font-weight: 900 !important;
+  font-size: 2rem !important;
+}
+
+/* BUTTON HOVER EFFECTS */
+button:hover, [type="button"]:hover, [type="submit"]:hover, .btn-primary:hover {
+  filter: brightness(1.1) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* BUTTONS */
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* FORM LAYOUT */
+.bg-white\/80 { background: rgba(255,255,255,0.8) !important; }
+.backdrop-blur-xl { -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); }
+.p-8 { padding: 2rem !important; }
+.rounded-3xl { border-radius: 1.5rem !important; }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25) !important; }
+.border { border: 1px solid rgba(255,255,255,0.5) !important; }
+
+.space-y-6 > * + * { margin-top: 1.5rem !important; }
+
+/* FORM LABELS */
+label {
+  display: block !important;
+  font-weight: 600 !important;
+  margin-bottom: 0.75rem !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* FORM INPUTS */
+textarea, input[type="text"], input[type="url"], input[type="file"] {
+  width: 100% !important;
+  padding: 1.25rem !important;
+  border: 2px solid #e5e7eb !important;
+  border-radius: 1rem !important;
+  background: rgba(255,255,255,0.9) !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+textarea:focus, input:focus {
+  outline: none !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.1) !important;
+  background: white !important;
+}
+
+/* GRID */
+.grid {
+  display: grid !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* FILE INPUT */
+input[type="file"] {
+  border: 2px dashed #d1d5db !important;
+  border-radius: 1rem !important;
+  padding: 1.25rem !important;
+  cursor: pointer !important;
+  background: rgba(255,255,255,0.6) !important;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background: linear-gradient(to right, #eff6ff, #e0e7ff) !important;
+  color: #1e40af !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 0.75rem !important;
+  font-weight: 600 !important;
+  margin-right: 1rem !important;
+  cursor: pointer !important;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: linear-gradient(to right, #dbeafe, #c7d2fe) !important;
+}
+
+/* IMAGE PREVIEW */
+.bg-green-50 {
+  background: #f0fdf4 !important;
+}
+.border-green-200 {
+  border: 1px solid #bbf7d0 !important;
+}
+.rounded-xl {
+  border-radius: 0.75rem !important;
+}
+.flex {
+  display: flex !important;
+}
+.items-center {
+  align-items: center !important;
+}
+.justify-between {
+  justify-content: space-between !important;
+}
+
+/* LOCATION BUTTON */
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #f97316, #ea580c) !important;
+}
+.rounded-2xl {
+  border-radius: 1rem !important;
+}
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05) !important;
+}
+
+/* SUBMIT BUTTON */
+.w-full {
+  width: 100% !important;
+}
+.text-xl {
+  font-size: 1.25rem !important;
+}
+.py-6 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+}
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1) !important;
+}
+.font-bold {
+  font-weight: 700 !important;
+}
+.items-center {
+  align-items: center !important;
+}
+.justify-center {
+  justify-content: center !important;
+}
+
+/* SPINNER */
+.animate-spin {
+  animation: spin 1s linear infinite !important;
+}
+
+/* RESULTS */
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #ecfdf5, #eff6ff, #faf5ff) !important;
+}
+.rounded-3xl {
+  border-radius: 1.5rem !important;
+}
+.border-4 {
+  border-width: 4px !important;
+}
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25) !important;
+}
+.backdrop-blur-xl {
+  -webkit-backdrop-filter: blur(24px) !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+/* TRUST METER */
+.rounded-2xl {
+  border-radius: 1rem !important;
+}
+
+/* DARK MODE */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a !important;
+    color: #f1f5f9 !important;
+  }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+}
+
+/* NAV */
+nav {
+  background: rgba(255,255,255,0.95) !important;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.nav-menu {
+  display: flex !important;
+  gap: 2rem !important;
+  align-items: center !important;
+}
+
+.nav-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0.75rem !important;
+  color: #475569 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.nav-link:hover {
+  background: rgba(37,99,235,0.1) !important;
+  color: #2563eb !important;
+}
+

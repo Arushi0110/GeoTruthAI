@@ -1,0 +1,52 @@
+services:
+  # GeoTruthAI Backend API
+  - type: web
+    name: geotruthai-server
+    runtime: node
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false
+      - key: AI_SERVICE_URL
+        fromService:
+          name: geotruthai-ai
+          type: web
+          property: host
+      - key: CLIENT_URL
+        fromService:
+          name: geotruthai-client
+          type: static_site
+          property: url
+    healthCheckPath: /
+
+  # GeoTruthAI AI Service (FastAPI)
+  - type: web
+    name: geotruthai-ai
+    runtime: python
+    plan: free
+    buildCommand: cd ai-service && pip install -r requirements.txt
+    startCommand: cd ai-service && uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health
+
+  # GeoTruthAI Frontend (static)
+  - type: static_site
+    name: geotruthai-client
+    runtime: static
+    buildCommand: cd client && npm install && npm run build
+    publishDir: client/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: geotruthai-server
+          type: web
+          property: url
+
