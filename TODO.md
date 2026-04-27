@@ -19,36 +19,29 @@
 2. Create free **M0** cluster
 3. Add IP `0.0.0.0/0` to Network Access
 4. Create database user
-5. Copy connection string into Render env var `MONGO_URI`
+5. Copy connection string for the Backend step below
 
-### 4. Backend (Render) — NEEDS DEPLOYMENT
+### 4. AI Service (Render) — NEEDS DEPLOYMENT
 1. Go to https://dashboard.render.com
-2. Click **New +** → **Blueprint**
+2. Click **New +** → **Web Service**
 3. Connect GitHub repo: `Arushi0110/GeoTruthAI`
-4. Render auto-detects `render.yaml`
-5. Add environment variables in the dashboard:
+4. Configure:
+   - **Name**: `geotruthai-ai`
+   - **Runtime**: Python 3
+   - **Build Command**: `cd ai-service && pip install -r requirements.txt`
+   - **Start Command**: `cd ai-service && uvicorn main:app --host 0.0.0.0 --port $PORT`
+
+### 5. Backend (Render) — NEEDS DEPLOYMENT
+1. In Render dashboard → **New +** → **Blueprint** (recommended)
+2. Connect GitHub repo: `Arushi0110/GeoTruthAI`
+3. Render auto-detects `render.yaml`
+4. Add environment variables in the dashboard:
    ```
    MONGO_URI=<your-mongodb-atlas-uri>
    JWT_SECRET=<your-secret-key>
    AI_SERVICE_URL=https://geotruthai-ai.onrender.com
    CLIENT_URL=https://geotruthai-client.vercel.app
    ```
-
-### 4. AI Service (Render) — NEEDS DEPLOYMENT
-1. In Render dashboard → **New +** → **Web Service**
-2. Connect same GitHub repo
-3. Configure:
-   - **Name**: `geotruthai-ai`
-   - **Runtime**: Python 3
-   - **Build Command**: `cd ai-service && pip install -r requirements.txt`
-   - **Start Command**: `cd ai-service && uvicorn main:app --host 0.0.0.0 --port $PORT`
-
-### 5. Database (MongoDB Atlas) — NEEDS SETUP
-1. Go to https://www.mongodb.com/atlas
-2. Create free **M0** cluster
-3. Add IP `0.0.0.0/0` to Network Access
-4. Create database user
-5. Copy connection string into Render env var `MONGO_URI`
 
 ## 🌐 Live URLs After Full Deployment
 
