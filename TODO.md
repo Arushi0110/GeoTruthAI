@@ -1,76 +1,59 @@
-# GeoTruthAI - Deployment TODO
+# GeoTruthAI - Deployment Progress
 
-## Current Status: Deployment Configuration Complete ✅
+## ✅ COMPLETED
 
-### Files Created/Updated:
-- ✅ `server/server.js` - Production CORS (multi-origin support)
-- ✅ `client/src/services/api.js` - Vite env variable for API URL
-- ✅ `client/vercel.json` - Vercel deployment config
-- ✅ `render.yaml` - Render blueprints (server + AI + static)
-- ✅ `DEPLOYMENT.md` - Step-by-step deployment guide
-- ✅ `.env.example` - Full env variable documentation
+### 1. Frontend (Vercel) - DEPLOYED 🎉
+- **URL**: https://geotruthai-client.vercel.app
+- **Status**: Live and accessible
+- **Build**: Successful
 
----
+### 2. Code Repository (GitHub) - PUSHED ✅
+- **URL**: https://github.com/Arushi0110/GeoTruthAI
+- **Branch**: main
+- **Status**: All deployment configs committed
 
-## Next Steps (Manual - Requires User Accounts):
+## ⏳ PENDING (Manual Steps Required)
 
-### 1️⃣ MongoDB Atlas (Database)
-- [ ] Sign up: https://www.mongodb.com/atlas
-- [ ] Create free M0 cluster
-- [ ] Add IP `0.0.0.0/0` to Network Access
-- [ ] Create database user (save password!)
-- [ ] Copy connection string to `.env` `MONGO_URI`
+### 3. Backend (Render) - NEEDS DEPLOYMENT
+**Steps:**
+1. Go to https://dashboard.render.com
+2. Click "New +" → "Blueprint"
+3. Connect GitHub repo: `Arushi0110/GeoTruthAI`
+4. Render will auto-detect `render.yaml`
+5. Add environment variables:
+   ```
+   MONGO_URI=<your-mongodb-atlas-uri>
+   JWT_SECRET=<your-secret-key>
+   AI_SERVICE_URL=https://geotruthai-ai.onrender.com
+   CLIENT_URL=https://geotruthai-client.vercel.app
+   ```
 
-### 2️⃣ Push to GitHub
-- [ ] Create GitHub repo: `GeoTruthAI`
-- [ ] `git init && git add . && git commit -m "initial"`
-- [ ] `git remote add origin https://github.com/YOUR_USERNAME/GeoTruthAI.git`
-- [ ] `git push -u origin main`
+### 4. AI Service (Render) - NEEDS DEPLOYMENT
+**Steps:**
+1. In Render dashboard → "New +" → "Web Service"
+2. Connect same GitHub repo
+3. Configure:
+   - **Name**: `geotruthai-ai`
+   - **Runtime**: Python 3
+   - **Build Command**: `cd ai-service && pip install -r requirements.txt`
+   - **Start Command**: `cd ai-service && uvicorn main:app --host 0.0.0.0 --port $PORT`
 
-### 3️⃣ Deploy AI Service (Render)
-- [ ] Sign up: https://render.com
-- [ ] New Web Service → Python
-- [ ] Root: `ai-service`
-- [ ] Build: `pip install -r requirements.txt`
-- [ ] Start: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-- [ ] Note the URL (e.g., `https://geotruthai-ai.onrender.com`)
+### 5. Database (MongoDB Atlas) - NEEDS SETUP
+**Steps:**
+1. Go to https://www.mongodb.com/atlas
+2. Create free M0 cluster
+3. Add IP `0.0.0.0/0` to Network Access
+4. Create database user
+5. Copy connection string to Render env vars
 
-### 4️⃣ Deploy Backend (Render)
-- [ ] New Web Service → Node
-- [ ] Root: `server`
-- [ ] Build: `npm install`
-- [ ] Start: `node server.js`
-- [ ] Env vars:
-  - `MONGO_URI=<Atlas URI>`
-  - `AI_SERVICE_URL=<AI service URL>`
-  - `CLIENT_URL=<Vercel URL>`
-  - `JWT_SECRET=<random secret>`
+## 🌐 Live URLs After Full Deployment
 
-### 5️⃣ Deploy Frontend (Vercel)
-- [ ] Sign up: https://vercel.com
-- [ ] Import from GitHub
-- [ ] Framework: Vite, Root: `client`
-- [ ] Env var: `VITE_API_URL=<Render backend URL>/api`
+| Service | URL |
+|---------|-----|
+| Frontend | https://geotruthai-client.vercel.app ✅ |
+| Backend | https://geotruthai-server.onrender.com ⏳ |
+| AI Service | https://geotruthai-ai.onrender.com ⏳ |
 
-### 6️⃣ Test Live Site
-- [ ] Visit Vercel URL
-- [ ] Submit test news → AI analysis
-- [ ] Check heatmap loads
-- [ ] Vote works
-
----
-
-## Architecture Summary
-- **Frontend**: React/Vite → Vercel (Free CDN)
-- **Backend**: Node/Express → Render (Free, sleeps after 15min idle)
-- **AI Service**: FastAPI → Render (Free, sleeps after 15min idle)
-- **Database**: MongoDB Atlas → M0 Free Tier (512MB)
-
-### Estimated Monthly Cost (Free Tiers):
-| Service  | Cost  | Limit                          |
-|----------|-------|--------------------------------|
-| Vercel   | $0    | 100GB bandwidth                |
-| Render   | $0    | 512MB RAM, sleeps after 15min  |
-| MongoDB  | $0    | 512MB storage, shared CPU      |
-| **Total** | **$0**| Perfect for MVP/demos          |
+## 💰 Cost
+**$0/month** - All services on free tiers
 

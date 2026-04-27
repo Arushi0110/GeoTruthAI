@@ -19,7 +19,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 // CORS origin from env (supports multiple origins comma-separated)
-const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000,https://geotruthai-client.vercel.app').split(',').map(o => o.trim())
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000').split(',').map(o => o.trim())
 
 // Middleware
 app.use(helmet())
